@@ -4,6 +4,7 @@ import {graphqlHTTP} from 'express-graphql'
 import cors from 'cors'
 
 import connection from './helpers/connection'
+import {schema} from './schema'
 
 // init express app
 const app:Express = express()
@@ -16,10 +17,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 // graphql init
-// app.use("/graphql",graphqlHTTP({
-//     schema,
-//     graphiql:true
-// }))
+app.use("/graphql",graphqlHTTP({
+    schema,
+    graphiql:true
+}))
 
 connection.then(()=>{
     app.listen(4000)
